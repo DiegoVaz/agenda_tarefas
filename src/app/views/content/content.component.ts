@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

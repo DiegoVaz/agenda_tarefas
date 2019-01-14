@@ -1,9 +1,12 @@
 <mat-nav-list role="list" class="drawer">
   <h3 matSubheader>Menu</h3>
-  <mat-list-item role="listitem">
-    <mat-icon mat-list-icon class="icon">folder</mat-icon>
+  <mat-list-item role="listitem" routerLink="/content-adicionar">
+    <mat-icon mat-list-icon class="icon">add_circle_outline</mat-icon>
     <h4 mat-line>Adicionar nova tarefa</h4>
   </mat-list-item>
-  <mat-list-item role="listitem">Visualizar todas tarefas</mat-list-item>
+  <mat-list-item role="listitem" routerLink="/content-listar">
+    <mat-icon mat-list-icon class="icon">list_alt</mat-icon>
+    <h4 mat-line>Visualizar todas tarefas</h4>
+  </mat-list-item>
   <mat-list-item role="listitem"></mat-list-item>
 </mat-nav-list>
