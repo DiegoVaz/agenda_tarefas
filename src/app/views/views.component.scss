@@ -13,10 +13,13 @@
         width: 264px;
     }
     .content{
-        display: flex;
-        // Centraliza na horizontal
-        justify-content: center;
-        // Centralisa na vertical
-        align-items: center;
+        // height: 100vh;
+        overflow: auto;
+        // width: 100vh;
+        display: block;
+        // // Centraliza na horizontal
+        // justify-content: center;
+        // // Centralisa na vertical
+        // align-items: center;
     }
 }

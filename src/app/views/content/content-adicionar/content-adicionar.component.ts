@@ -1,4 +1,7 @@
+import { AgendaService } from './../../../agenda.service';
 import { Component, OnInit } from '@angular/core';
+
+import { Tarefa } from 'src/app/models/agenda.model';
 
 @Component({
   selector: 'app-content-adicionar',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentAdicionarComponent implements OnInit {
 
-  constructor() { }
+  tarefa: Tarefa = {tarefa: ''};
+
+  constructor(private agendaService: AgendaService) { }
 
   ngOnInit() {
   }
 
+  salvarTarefa(): void {
+    this.agendaService.createTarefa(this.tarefa).then(() => {
+      this.tarefa = {tarefa: ''};
+    });
+  }
 }

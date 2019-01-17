@@ -1,16 +1,41 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+<mat-list class="list" class="mat-elevation-z1">
+  <h1>Tarefas a realizar</h1>
+  <ng-container *ngFor="let tarefa of (tarefas | async)">
+    <ng-container *ngIf="!tarefa.finalizado">
+      <mat-list-item> {{tarefa.tarefa}}
+        <div class="buttom">
+          <button mat-icon-button (click)="finalzarTarefa(tarefa)">
+            <mat-icon class="icons">check_circle_outline</mat-icon>
+          </button>
+          <button mat-icon-button (click)="showDialog(tarefa)">
+            <mat-icon class="icons">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon class="icons" (click)="deleteTarefa(tarefa)">delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </ng-container>
   </ng-container>
+</mat-list>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+<mat-list class="list" class="mat-elevation-z1">
+  <h1>Tarefas finlizadas</h1>
+  <ng-container *ngFor="let tarefa of (tarefas | async)">
+    <ng-container *ngIf="tarefa.finalizado">
+      <mat-list-item> {{tarefa.tarefa}}
+        <div class="buttom">
+          <button mat-icon-button>
+            <mat-icon class="icons" (click)="finalzarTarefa(tarefa)">arrow_upward</mat-icon>
+          </button>
+          <button mat-icon-button (click)="showDialog()">
+            <mat-icon class="icons">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon class="icons" (click)="deleteTarefa(tarefa)">delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </ng-container>
   </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</mat-list>

@@ -1,22 +1,12 @@
+import { DialogEditarComponent } from './../dialog-editar/dialog-editar.component';
+import { MatDialog } from '@angular/material';
+import { Tarefa } from './../../../models/agenda.model';
+import { AgendaService } from './../../../agenda.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen'},
-  {position: 2, name: 'Helium'},
-  {position: 3, name: 'Lithium'},
-  {position: 4, name: 'Beryllium'},
-  {position: 5, name: 'Boron'},
-  {position: 6, name: 'Carbon'},
-  {position: 7, name: 'Nitrogen'},
-  {position: 8, name: 'Oxygen'},
-  {position: 9, name: 'Fluorine'},
-  {position: 10, name: 'Neon'},
-];
+
 @Component({
   selector: 'app-content-listar',
   templateUrl: './content-listar.component.html',
@@ -24,12 +14,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ContentListarComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name'];
-  dataSource = ELEMENT_DATA;
+  tarefa: Tarefa;
+  tarefas: Observable<Tarefa[]>;
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog,
+    private agendaService: AgendaService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.tarefas = this.agendaService.tarefas.valueChanges();
   }
 
+  showDialog(tarefa: Tarefa): void {
+    this.dialog.open(DialogEditarComponent);
+    console.log(tarefa.tarefa);
+  }
+
+  deleteTarefa(tarefa: Tarefa): void {
+    this.agendaService.deleteTarefa(tarefa);
+  }
+
+  finalzarTarefa(tarefa: Tarefa): void {
+    tarefa.finalizado = !tarefa.finalizado;
+    this.agendaService.updateTarefa(tarefa);
+  }
 }

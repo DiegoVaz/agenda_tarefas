@@ -1,29 +1,42 @@
 import { AppRoutingModule } from './../../appRouting.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
+import { DialogEditarComponent } from './dialog-editar/dialog-editar.component';
 import { ContentComponent } from './content.component';
 import { ContentAdicionarComponent } from './content-adicionar/content-adicionar.component';
 import { ContentListarComponent } from './content-listar/content-listar.component';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
+import { MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatIconModule,
+  MatGridListModule,
+  MatListModule,
+  MatDialogModule
+} from '@angular/material';
 
 
 
 @NgModule({
-  declarations: [ContentComponent, ContentAdicionarComponent, ContentListarComponent],
+  declarations: [ContentComponent, ContentAdicionarComponent, ContentListarComponent, DialogEditarComponent],
+  entryComponents: [
+    DialogEditarComponent
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
+    FormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule
+    MatIconModule,
+    MatGridListModule,
+    MatListModule,
+    MatDialogModule
   ],
   exports: [
     ContentComponent
