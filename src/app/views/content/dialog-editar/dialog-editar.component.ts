@@ -1,7 +1,7 @@
+import { Tarefa } from './../../../models/agenda.model';
 import { AgendaService } from './../../../agenda.service';
-import { Tarefa } from 'src/app/models/agenda.model';
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-dialog-editar',
@@ -10,15 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogEditarComponent implements OnInit {
 
-  tarefa: Tarefa;
-  tarefas: Observable<Tarefa[]>;
+  novaTarefa = this.tarefa.tarefa;
 
-  constructor(private agendaService: AgendaService) { }
-
-  ngOnInit() {
+  constructor(@Inject(MAT_DIALOG_DATA) public tarefa: Tarefa, private agendaService: AgendaService) {
   }
 
+  ngOnInit() {}
+
   updateTarefa(tarefa: Tarefa): void {
+    tarefa.tarefa = this.novaTarefa;
     this.agendaService.updateTarefa(tarefa);
   }
 }

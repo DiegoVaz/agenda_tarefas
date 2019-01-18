@@ -18,12 +18,14 @@ import {
   MatInputModule,
   MatButtonModule
 } from '@angular/material';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     ViewsComponent,
     ToolbarComponent,
-    DrawerComponent
+    DrawerComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

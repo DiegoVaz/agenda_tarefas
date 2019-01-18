@@ -1,10 +1,13 @@
 <h1 mat-dialog-title>Editar tarefa</h1>
 <mat-dialog-content>
   <mat-form-field>
-    <input class="input" matInput placeholder="Editar tarefa">
+    <input class="input" matInput placeholder="Editar tarefa"
+     value="{{ tarefa.tarefa }}"
+      [(ngModel)]="novaTarefa"
+      (keyup.enter)="updateTarefa(tarefa)">
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-raised-button color="primary" (click)="updateTarefa(tarefa)">Salvar</button>
+  <button mat-button mat-raised-button color="primary" mat-dialog-close (click)="updateTarefa(tarefa)">Salvar</button>
   <button mat-button mat-raised-button color="warn" mat-dialog-close>Fechar</button>
 </mat-dialog-actions>

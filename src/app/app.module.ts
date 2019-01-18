@@ -1,13 +1,16 @@
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './guard/auth.guard';
 
-import { AppRoutingModule } from './appRouting.module';
 import { AppComponent } from './app.component';
-import { ViewsModule } from './views/views.module';
 import { AgendaService } from './agenda.service';
+import { ViewsModule } from './views/views.module';
+import { AppRoutingModule } from './appRouting.module';
+
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 @NgModule({
@@ -19,10 +22,12 @@ import { AngularFireModule } from '@angular/fire';
     AppRoutingModule,
     ViewsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [
-    AgendaService
+    AgendaService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

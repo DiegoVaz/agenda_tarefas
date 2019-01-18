@@ -1,8 +1,8 @@
 import { DialogEditarComponent } from './../dialog-editar/dialog-editar.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Tarefa } from './../../../models/agenda.model';
 import { AgendaService } from './../../../agenda.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
 
@@ -27,8 +27,11 @@ export class ContentListarComponent implements OnInit {
   }
 
   showDialog(tarefa: Tarefa): void {
-    this.dialog.open(DialogEditarComponent);
-    console.log(tarefa.tarefa);
+    const tarefaDados = new MatDialogConfig();
+    tarefaDados.data = tarefa;
+
+    this.dialog.open(DialogEditarComponent, tarefaDados);
+    // console.log(tarefa);
   }
 
   deleteTarefa(tarefa: Tarefa): void {
