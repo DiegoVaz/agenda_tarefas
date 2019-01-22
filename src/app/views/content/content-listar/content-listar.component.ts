@@ -1,11 +1,13 @@
+import { Component, OnInit } from '@angular/core';
+
 import { DialogEditarComponent } from './../dialog-editar/dialog-editar.component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Tarefa } from './../../../models/agenda.model';
 import { AgendaService } from './../../../agenda.service';
-import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
+import * as pdfMake from 'pdfmake/build/pdfmake.js';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 
 @Component({
   selector: 'app-content-listar',
@@ -31,7 +33,6 @@ export class ContentListarComponent implements OnInit {
     tarefaDados.data = tarefa;
 
     this.dialog.open(DialogEditarComponent, tarefaDados);
-    // console.log(tarefa);
   }
 
   deleteTarefa(tarefa: Tarefa): void {
@@ -41,5 +42,13 @@ export class ContentListarComponent implements OnInit {
   finalzarTarefa(tarefa: Tarefa): void {
     tarefa.finalizado = !tarefa.finalizado;
     this.agendaService.updateTarefa(tarefa);
+  }
+
+  gerarPDF(): void {
+    // debugger
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    const dd = { content: 'Testeeee' };
+    pdfMake.createPdf(dd).open();
+    // pdfMake.createPdf(dd).download();
   }
 }

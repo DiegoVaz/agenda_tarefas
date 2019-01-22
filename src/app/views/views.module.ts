@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { ViewsComponent } from './views.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -38,7 +39,8 @@ import { LoginComponent } from './login/login.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     ViewsComponent,

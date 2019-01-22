@@ -1,3 +1,4 @@
+import { Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,6 +14,9 @@ import * as firebase from 'firebase/app';
 export class LoginComponent implements OnInit {
 
   user: Observable<firebase.User>;
+  usuario: string;
+  senha: string;
+  hide = true;
 
   constructor(public afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
@@ -21,14 +25,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public login(email: string, senha: string) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, senha).then(() => {
-      this.router.navigate(['/view']);
-    });
+  public login() {
+    this.afAuth.auth.signInWithEmailAndPassword(this.usuario, this.senha)
+      .then(user => {
+        this.router.navigate(['/view']);
+      })
+      .catch(erro => {
+        console.log(erro);
+      });
   }
 
-  public logout() {
-    this.router.navigate(['']);
-    return this.afAuth.auth.signOut();
+  criarUsuario() {
+    this.afAuth.auth.createUserWithEmailAndPassword(this.usuario, this.senha)
+      .then(user => {
+        this.router.navigate(['/']);
+      })
+      .catch(erro => {
+        console.log(erro);
+      });
   }
 }

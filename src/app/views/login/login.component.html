@@ -6,15 +6,20 @@
     </mat-card-header>
     <mat-card-content>
       <mat-form-field class="input">
-        <input matInput placeholder="Usuário" type="email" required>
+        <input matInput placeholder="Usuário" type="email" name="usuario" [(ngModel)]="usuario" required>
+        <mat-hint>Digite aqui o seu e-mail</mat-hint>
+        <mat-error >Digite um e-mail válido</mat-error>
+        <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
     </mat-card-content>
     <mat-form-field class="input">
-      <input matInput placeholder="Senha" type="password" required>
+      <input matInput placeholder="Senha" type="password" name="senha" [(ngModel)]="senha" [type]="hide ? 'password' : 'text'" required>
+      <mat-error>Senha errada</mat-error>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="login()">Entrar</button>
-      <button mat-flat-button color="warn" class="btnCancelar">Cancela</button>
+      <button mat-flat-button type="submit" color="primary" (click)="login()">Entrar</button>
+      <button mat-flat-button color="primary" class="btnCancelar" (click)="criarUsuario()">Criar novo usuário</button>
     </mat-card-actions>
   </mat-card>
 </form>
