@@ -16,7 +16,7 @@ export class AgendaService {
     this.setTarefas();
    }
 
-  private setTarefas(): void {
+  setTarefas(): void {
     this.tarefas = this.afs.collection<Tarefa>('agenda');
   }
 
